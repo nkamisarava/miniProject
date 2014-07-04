@@ -35,5 +35,5 @@ public class WebAppConfig  extends WebMvcConfigurerAdapter {
 
         return tilesConfigurer;
     }
-
+//reg version
 }

@@ -41,4 +41,6 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[0];
     }
+
+    //reg version
 }
