@@ -13,28 +13,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
-   @Autowired
+    @Autowired
     private UserService userService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
-		model.addAttribute("message", "Hello world!");
-		return "hello";
-	}
-
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String printWelcome(ModelMap model) {
+	model.addAttribute("message", "Hello world!");
+	return "hello";
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationForm(Model model) {
-        model.addAttribute(new User());
-        return "registration";
+	model.addAttribute(new User());
+	return "registration";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+	return "login";
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUser(User user) {
-        user.setRole(UserRoles.USER);
-        userService.addUser(user);
-        return "redirect:/";
+	userService.addUser(user);
+	return "redirect:/";
     }
 }
 

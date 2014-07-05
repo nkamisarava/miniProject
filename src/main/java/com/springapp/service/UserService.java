@@ -1,6 +1,7 @@
 package com.springapp.service;
 
 import com.springapp.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserService {
 
     void delete(long id);
 
-    User getByLogin(String login);
+   // UserDetails getByLogin(String login);
 
     User editUser(User user);
 

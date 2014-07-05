@@ -16,6 +16,7 @@
         <spring.data>1.6.0.RELEASE</spring.data>
         <slf4j.version>1.7.7</slf4j.version>
         <tiles.version>3.0.4</tiles.version>
+        <spring.securiry>3.2.4.RELEASE</spring.securiry>
     </properties>
 
     <dependencies>
@@ -55,6 +56,7 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -123,7 +125,29 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
 
+       <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+       <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

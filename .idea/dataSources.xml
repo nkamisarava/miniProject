@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3565859041">
+    <data-source source="LOCAL" name="MySQL - minipro@localhost" uuid="3edb9ef7-8199-4208-b9b4-6f5716df7c87">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/minipro</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>df98df93df93df92df9adf99df98dffadfebdfeb</user-password>
+      <schema-pattern>minipro.*</schema-pattern>
+      <default-schemas>minipro.*</default-schemas>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
