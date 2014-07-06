@@ -22,19 +22,20 @@ public class UserController {
 		return "hello";
 	}
 
-
-
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationForm(Model model) {
         model.addAttribute(new User());
         return "registration";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+	return "login";
+    }
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUser(User user) {
-        user.setRole(UserRoles.USER);
         userService.addUser(user);
         return "redirect:/";
     }
 }
-
