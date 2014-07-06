@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Qualifier("userRepository")
     @Autowired
@@ -30,9 +30,10 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Override
     public User addUser(User user) {
 	user.setRole(UserRoles.USER);
-	//PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	//String hashedPassword = passwordEncoder.encode(user.getPassword());
-	//user.setPassword(hashedPassword);
+	//PasswordEncoder passwordEncoder=new
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	String hashedPassword = passwordEncoder.encode(user.getPassword());
+	user.setPassword(hashedPassword);
 	User savedUser = userRepository.saveAndFlush(user);
 	return savedUser;
     }
@@ -65,12 +66,20 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+
+
 	User user = userRepository.findByLogin(login);
-	Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
+	if (user != null) {
+	    Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 
 
-	roles.add((new SimpleGrantedAuthority((user.getRole().name()))));
-	UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
-	return userDetails;
+	    roles.add((new SimpleGrantedAuthority((user.getRole().name()))));
+	    UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
+	    //UserDetails user = new User(username, "password", true, true, true, true, new GrantedAuthority[]{ new GrantedAuthorityImpl("ROLE_USER") });
+	    return userDetails;
+	} else {
+	    throw new UsernameNotFoundException("Неправильный логин или пароль");
+	}
+
     }
 }

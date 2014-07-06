@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -49,5 +50,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ShaPasswordEncoder getShaPasswordEncoder(){
 	return new ShaPasswordEncoder();
+    }
+    @Bean
+    public BCryptPasswordEncoder getBCryptPasswordEncoder(){
+	return  new BCryptPasswordEncoder();
     }
 }

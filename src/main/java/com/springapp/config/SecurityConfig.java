@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Created by св on 7/4/201.
@@ -25,11 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private ShaPasswordEncoder encoder;
 
     @Autowired
+
+    private BCryptPasswordEncoder BEncoder;
+
+    @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
 	auth
-	    .userDetailsService(userService);
-	// .passwordEncoder(encoder);
+	    .userDetailsService(userService)
+	    .passwordEncoder(BEncoder);
     }
 
     @Override
@@ -40,50 +45,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    .antMatchers("/", "/registration", "/addUser").permitAll()
 	    .antMatchers("/**").access("hasRole('USER')")
 	    .and().formLogin();
-	  /*  .antMatchers("/resources/**", "/**")
-	    .permitAll()*/
-	  /*  .anyRequest()
-	    .permitAll()*/
-	;
-/*
+
 	http.formLogin()
 	    .loginPage("/login")
-	    .loginProcessingUrl("j_spring_security_check")
-	    .failureUrl("/login?error")
-	    .usernameParameter("j_username")
-	    .passwordParameter("j_password")
-	    .permitAll();*/
-/*
-	http.logout()
-	    .permitAll()
-	    .logoutUrl("/logout")
-	    .logoutSuccessUrl("/login?logout")
-	    .invalidateHttpSession(true);
-    }*/
-
-
-	/*http.authorizeRequests()
-	 	//.antMatchers("/**").access("hasRole('USER')")
-
-	     .antMatchers("/","/registration","/addUser").permitAll()
-	    .antMatchers("/**").access("hasRole('USER')")
-	    .and().formLogin();
-*/
-	/*http.formLogin()
-	    .loginPage("/login")
+	    .loginProcessingUrl("/j_spring_security_check")
 	    .defaultSuccessUrl("/")
 	    .failureUrl("/login?error")
 	    .usernameParameter("j_username")
 	    .passwordParameter("j_password")
-	    .permitAll();
-*/
-	http.formLogin()
-	    .loginPage("/login")
-	    .loginProcessingUrl("/j_spring_security_check")
-	    .failureUrl("/login?error")
-	    .usernameParameter("j_username")
-	    .passwordParameter("j_password")
-	    .permitAll();
+	    .permitAll().and()
+	.logout()
+	    //.logoutUrl("login?logout")
+	    .logoutSuccessUrl("/")
+	    .permitAll()
+	    .and();
+
     }
 
 }
